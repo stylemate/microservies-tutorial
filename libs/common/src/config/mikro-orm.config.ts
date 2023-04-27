@@ -1,9 +1,9 @@
-// this file is generator use-only
 import { EntityGenerator } from '@mikro-orm/entity-generator';
 import { MikroOrmModuleSyncOptions } from '@mikro-orm/nestjs';
 
 const config: MikroOrmModuleSyncOptions = {
-  //   entities: ['./dist/generated_entities'],
+  entities: ['./dist/entities'],
+  entitiesTs: ['./entities'],
   // autoLoadEntities: true,
   extensions: [EntityGenerator],
   dbName: 'postgres',

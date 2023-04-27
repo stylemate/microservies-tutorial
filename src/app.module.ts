@@ -6,7 +6,12 @@ import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Form } from '../entities/Form';
 
 @Module({
-  imports: [DatabaseModule, ConfigModule, MikroOrmModule.forFeature([Form])],
+  imports: [
+    DatabaseModule,
+    // ConfigModule,
+    // MikroOrmModule.forRoot(),
+    // MikroOrmModule.forFeature([Form])
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
