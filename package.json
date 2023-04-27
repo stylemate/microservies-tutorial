@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@mikro-orm/cli": "^5.7.2",
     "@mikro-orm/core": "^5.7.2",
     "@mikro-orm/entity-generator": "^5.7.2",
     "@mikro-orm/nestjs": "^5.1.8",
@@ -80,5 +81,12 @@
     "moduleNameMapper": {
       "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1"
     }
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./libs/common/src/database/mikro-orm.config.ts",
+      "./dist/libs/common/database/mikro-orm.config.js"
+    ]
   }
 }
