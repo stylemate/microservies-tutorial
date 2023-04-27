@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { Form } from '@app/common/database/entities/test.entity';
+import { Form } from '../entities/Form';
 import { EntityRepository } from '@mikro-orm/postgresql';
 
 @Controller()
