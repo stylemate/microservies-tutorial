@@ -9,8 +9,7 @@
       "entryFile": "index",
       "sourceRoot": "libs/common/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/common/tsconfig.lib.json",
-        "webpack": false
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
     },
     "reservations": {
@@ -24,7 +23,7 @@
     }
   },
   "compilerOptions": {
-    "webpack": true,
+    "webpack": false,
     "tsConfigPath": "apps/reservations/tsconfig.app.json"
   },
   "monorepo": true,
