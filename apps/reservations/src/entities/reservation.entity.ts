@@ -1,12 +1,23 @@
-import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import {
+  Entity,
+  ManyToOne,
+  PrimaryKey,
+  PrimaryKeyProp,
+  PrimaryKeyType,
+  Property,
+} from '@mikro-orm/core';
 import { User } from './user.entity';
 import { Place } from './place.entity';
 import { Invoice } from './invoice.entity';
 
 @Entity()
 export class Reservation {
-  @PrimaryKey({ columnType: 'uuid' })
-  reservationId!: string;
+  // Type only works fine, but both just in case
+  [PrimaryKeyProp]: 'reservationId';
+  [PrimaryKeyType]: string;
+
+  @PrimaryKey({ columnType: 'uuid', defaultRaw: 'gen_random_uuid()' })
+  reservationId: string;
 
   @ManyToOne({
     entity: () => User,
@@ -36,11 +47,11 @@ export class Reservation {
   invoiceId?: string;
 
   @Property({ length: 6, defaultRaw: `CURRENT_TIMESTAMP` })
-  timestamp!: Date;
+  timestamp: Date;
 
-  @Property({ columnType: 'date' })
-  startDate!: string;
+  @Property({ columnType: 'date', nullable: true })
+  startDate?: string;
 
-  @Property({ columnType: 'date' })
-  endDate!: string;
+  @Property({ columnType: 'date', nullable: true })
+  endDate?: string;
 }
