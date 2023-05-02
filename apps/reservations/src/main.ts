@@ -1,10 +1,15 @@
 import { NestFactory } from '@nestjs/core';
 import { ReservationsModule } from './reservations.module';
-import * as morgan from 'morgan';
+import { ValidationPipe } from '@nestjs/common';
+import { Logger } from 'nestjs-pino';
 
 async function bootstrap() {
   const app = await NestFactory.create(ReservationsModule);
-  app.use(morgan('tiny'));
+  app.useGlobalPipes(
+    new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+  );
+  app.useLogger(app.get(Logger));
+  app.getHttpAdapter().getInstance().disable('x-powered-by');
   await app.listen(3000);
 }
 bootstrap();

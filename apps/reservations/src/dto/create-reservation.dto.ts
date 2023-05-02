@@ -1,4 +1,5 @@
-import { IsOptional, IsString, IsUUID } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsDate, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateReservationDto {
   @IsOptional()
@@ -10,9 +11,14 @@ export class CreateReservationDto {
   @IsOptional()
   invoiceId?: string;
 
+  @IsDate()
   @IsOptional()
-  startDate?: string;
+  // use class transformer to transform incoming string with Date constructor
+  @Type(() => Date)
+  startDate?: Date;
 
+  @IsDate()
   @IsOptional()
-  endDate?: string;
+  @Type(() => Date)
+  endDate?: Date;
 }

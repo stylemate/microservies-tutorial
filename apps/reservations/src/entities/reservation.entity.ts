@@ -51,8 +51,8 @@ export class Reservation {
   timestamp: Date;
 
   @Property({ columnType: 'date', nullable: true })
-  startDate?: string;
+  startDate?: Date;
 
   @Property({ columnType: 'date', nullable: true })
-  endDate?: string;
+  endDate?: Date;
 }
