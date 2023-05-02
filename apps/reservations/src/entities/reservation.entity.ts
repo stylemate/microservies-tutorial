@@ -12,6 +12,7 @@ import { Invoice } from './invoice.entity';
 
 @Entity()
 export class Reservation {
+  // In order to use Entity Manager's getReference().....
   // Type only works fine, but both just in case
   [PrimaryKeyProp]: 'reservationId';
   [PrimaryKeyType]: string;

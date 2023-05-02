@@ -35,6 +35,7 @@ export class ReservationsService {
 
     // // nativeUpdate doesn't trigger life cycle hook, not really managed by EM. No need to flush()
     // // how to return update part then?
+    // // request time ~= 8ms
     // return await this.em.nativeUpdate(
     //   Reservation,
     //   { reservationId },
@@ -42,11 +43,14 @@ export class ReservationsService {
     // );
 
     // // Wrapper assign()
+    // // request time ~= 15ms
     // const reservation = await this.em.getReference(Reservation, reservationId);
     // wrap(reservation).assign(updateReservationDto);
     // await this.em.flush();
     // return reservation;
 
+    // class-based (DTO) assign()
+    // request time ~= 12ms
     const reservation = await this.em.getReference(Reservation, reservationId);
     this.em.assign(reservation, updateReservationDto);
     await this.em.flush();
