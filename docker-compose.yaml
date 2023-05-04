@@ -1,0 +1,34 @@
+# env
+services:
+  reservations:
+    build:
+      context: .
+      dockerfile: ./apps/reservations/Dockerfile
+      target: development
+    # gets hot reloading, with the name reservations
+    command: pnpm run start:dev reservations
+    ports:
+      - '3000:3000'
+    # mounting this current directory in my mac where docker-compose.yaml is, as /usr/src/app
+    # that's why volume is not listed, and hot reload works this way
+    volumes:
+      - .:/usr/src/app
+
+  postgres-microservice:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'postgres'
+    ports:
+      - '54321:5432'
+    volumes:
+      # copied commands from pnpm exec mikro-orm schema:create --dump
+      # this will only run once the volume is created, when docker compose goes down, it will not delete the volume, thus guaranteeing running only once
+      - ./scripts/database-schema-create.sql:/docker-entrypoint-initdb.d/database-schema-create.sql
+      # just don't put dash, hyphen, colon, or etc
+      - postgresmicro:/var/lib/postgresql/data
+
+volumes:
+  postgresmicro:
