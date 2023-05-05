@@ -6,7 +6,7 @@ import {
   PrimaryKeyType,
   Property,
 } from '@mikro-orm/core';
-import { User } from './user.entity';
+import { User } from '../../../auth/src/users/entities/user.entity';
 import { Place } from './place.entity';
 import { Invoice } from './invoice.entity';
 

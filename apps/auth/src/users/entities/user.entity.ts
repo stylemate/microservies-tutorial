@@ -3,13 +3,20 @@ import {
   PrimaryKey,
   PrimaryKeyProp,
   PrimaryKeyType,
+  Property,
 } from '@mikro-orm/core';
 
 @Entity()
-export class Place {
-  [PrimaryKeyProp]: 'placeId';
+export class User {
+  [PrimaryKeyProp]: 'userId';
   [PrimaryKeyType]: string;
 
   @PrimaryKey({ columnType: 'uuid', defaultRaw: 'gen_random_uuid()' })
-  placeId!: string;
+  userId: string;
+
+  @Property({ columnType: 'varchar', length: 254 })
+  email: string;
+
+  @Property({ columnType: 'text' })
+  password: string;
 }

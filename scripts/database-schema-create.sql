@@ -1,11 +1,11 @@
 set names 'utf8';
 set session_replication_role = 'replica';
 
-create table "invoice" ("invoice_id" uuid not null, constraint "invoice_pkey" primary key ("invoice_id"));
+create table "invoice" ("invoice_id" uuid not null default gen_random_uuid(), constraint "invoice_pkey" primary key ("invoice_id"));
 
-create table "place" ("place_id" uuid not null, constraint "place_pkey" primary key ("place_id"));
+create table "place" ("place_id" uuid not null default gen_random_uuid(), constraint "place_pkey" primary key ("place_id"));
 
-create table "user" ("user_id" uuid not null, constraint "user_pkey" primary key ("user_id"));
+create table "user" ("user_id" uuid not null default gen_random_uuid(), "email" varchar not null, "password" text not null, constraint "user_pkey" primary key ("user_id"));
 
 create table "reservation" ("reservation_id" uuid not null default gen_random_uuid(), "userId" uuid null, "placeId" uuid null, "invoiceId" uuid null, "timestamp" timestamptz(6) not null default CURRENT_TIMESTAMP, "start_date" date null, "end_date" date null, constraint "reservation_pkey" primary key ("reservation_id"));
 

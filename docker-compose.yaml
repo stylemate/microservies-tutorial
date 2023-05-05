@@ -5,12 +5,22 @@ services:
       context: .
       dockerfile: ./apps/reservations/Dockerfile
       target: development
-    # gets hot reloading, with the name reservations
     command: pnpm run start:dev reservations
     ports:
       - '3000:3000'
     # mounting this current directory in my mac where docker-compose.yaml is, as /usr/src/app
     # that's why volume is not listed, and hot reload works this way
+    volumes:
+      - .:/usr/src/app
+
+  auth:
+    build:
+      context: .
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    command: pnpm run start:dev auth
+    ports:
+      - '3001:3001'
     volumes:
       - .:/usr/src/app
 

@@ -5,6 +5,6 @@ export class Invoice {
   [PrimaryKeyProp]: 'invoiceId';
   [PrimaryKeyType]: string;
 
-  @PrimaryKey({ columnType: 'uuid' })
+  @PrimaryKey({ columnType: 'uuid', defaultRaw: 'gen_random_uuid()' })
   invoiceId!: string;
 }
